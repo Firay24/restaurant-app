@@ -2,6 +2,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## INFORMATION
+React version: ^18.2.0
+Username: user12a@gmail.com
+Password: user12a
+Link deploy: [Click here](https://restaurant-app-xi-ten.vercel.app/)
+
 ## Available Scripts
 
 In the project directory, you can run:
