@@ -82,7 +82,7 @@ function Cards({ restaurant }) {
         </div>
       </div>
       <div className="mt-2">
-        <Button text="learn more" style="bg-blue-950 hover:bg-gray-950 rounded w-full text-white" />
+        <Button detailButton id={restaurant.location_id} text="learn more" style="bg-blue-950 hover:bg-gray-950 rounded w-full text-white" />
       </div>
     </div>
   );

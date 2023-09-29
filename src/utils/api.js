@@ -19,6 +19,25 @@ async function getAllRestaurant() {
   return { error: false, data: responseJson.data };
 }
 
+async function getRestaurantById(id) {
+  const response = await fetch(`${BASE_URL_RESTAURANT}/get-details?location_id=${id}`, {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': '98d32ea233msh2186d51799ab409p1e394cjsn4619ffde6001',
+      'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com',
+    },
+  });
+
+  const responseJson = await response.json();
+
+  if (!response.ok) {
+    return { error: true };
+  }
+
+  return { error: false, data: responseJson };
+}
+
 export {
   getAllRestaurant,
+  getRestaurantById,
 };
