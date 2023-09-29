@@ -4,10 +4,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## INFORMATION
 React version: ^18.2.0
+
 Username: user12a@gmail.com
+
 Password: user12a
+
 Link deploy: [Click here](https://restaurant-app-xi-ten.vercel.app/)
+
 API restaurant: [api restaurant](https://rapidapi.com/apidojo/api/travel-advisor/)
+
 API login: [api login](https://rapidapi.com/ujjandeveloper/api/register-and-login-with-jwt-token/)
 
 ## Available Scripts
