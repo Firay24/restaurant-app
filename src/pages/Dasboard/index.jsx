@@ -30,16 +30,56 @@ function Dashboard() {
     setFilters(newFilter);
   };
 
+  const sortPriceCheap = () => {
+    const sortedData = restaurants.data
+      .filter((restaurant) => restaurant.price)
+      .sort((a, b) => {
+        // Mengurai dan mengonversi harga minimum
+        const [minA, minB] = [a.price, b.price].map((price) => parseInt(price.replace('$', '').split(' - ')[0], 10));
+        return minA - minB;
+      });
+    setRestaurants((prevItems) => ({
+      ...prevItems,
+      data: sortedData,
+    }));
+  };
+
+  const sortPriceExpensive = () => {
+    const sortedData = restaurants.data
+      .filter((restaurant) => restaurant.price)
+      .sort((a, b) => {
+        // Mengurai dan mengonversi harga minimum
+        const [minA, minB] = [a.price, b.price].map((price) => parseInt(price.replace('$', '').split(' - ')[0], 10));
+        return minB - minA;
+      });
+    setRestaurants((prevItems) => ({
+      ...prevItems,
+      data: sortedData,
+    }));
+  };
+
+  const sorting = () => {
+    if (filters.price === 'cheap') {
+      sortPriceCheap();
+    } else if (filters.price === 'expensive') {
+      sortPriceExpensive();
+    }
+  };
+
   useEffect(() => {
     getRestaurantHandler();
   }, []);
+
+  useEffect(() => {
+    sorting();
+  }, [filters.price]);
 
   if (!isLoading) {
     filteredRestaurants = restaurants.data.filter((restaurant) => {
       if (filters.openNow !== '' && restaurant.open_now_text !== filters.openNow) {
         return false;
       }
-      if (filters.category !== '' && restaurant.cuisine[0].name !== filters.category) {
+      if (filters.category !== '' && restaurant.cuisine && restaurant.cuisine.length > 0 && restaurant.cuisine[0].name !== filters.category) {
         return false;
       }
       return true;

@@ -79,8 +79,8 @@ function Filter({ onFilterChange }) {
             onChange={handlePriceChange}
           >
             <option value="">Price</option>
-            <option value="largest">Largets</option>
-            <option value="biggest">Biggest</option>
+            <option value="cheap">Cheap</option>
+            <option value="expensive">Expensive</option>
           </select>
         </div>
         <div>
@@ -92,9 +92,15 @@ function Filter({ onFilterChange }) {
             onChange={handleCategoryChange}
           >
             <option value="">Category</option>
-            <option value="category1">Category1</option>
-            <option value="category2">Category2</option>
-            <option value="category3">Category3</option>
+            <option value="Seafood">Seafood</option>
+            <option value="Wine Bar">Wine Bar</option>
+            <option value="Asian">Asian</option>
+            <option value="Japanese">Japanese</option>
+            <option value="Italian">Italian</option>
+            <option value="Chinese">Chinese</option>
+            <option value="European">European</option>
+            <option value="Pakistani">Pakistani</option>
+            <option value="Indian">Indian</option>
           </select>
         </div>
       </div>
