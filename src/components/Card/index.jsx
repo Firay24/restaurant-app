@@ -18,7 +18,6 @@ function Cards({ restaurant }) {
   const stars = [];
 
   for (let i = 0; i < 5; i++) {
-    // Untuk setiap bintang, kita cek apakah rating lebih besar atau sama dengan indeks saat ini
     const filled = i < rating;
     stars.push(
       <span key={i}>

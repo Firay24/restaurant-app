@@ -20,12 +20,14 @@ function Dashboard({ onLogoutHandler }) {
     price: '',
     category: '',
   });
+  const [originalOrder, setOriginalOrder] = useState([]);
   let filteredRestaurants = '';
 
   const getRestaurantHandler = async () => {
     try {
       const result = await getAllRestaurant();
       setRestaurants(result);
+      setOriginalOrder(result.data);
       setIsLoading(false);
     } catch (error) {
       setRestaurants({ error: true, data: [] });
@@ -40,7 +42,6 @@ function Dashboard({ onLogoutHandler }) {
     const sortedData = restaurants.data
       .filter((restaurant) => restaurant.price)
       .sort((a, b) => {
-        // Mengurai dan mengonversi harga minimum
         const [minA, minB] = [a.price, b.price].map((price) => parseInt(price.replace('$', '').split(' - ')[0], 10));
         return minA - minB;
       });
@@ -54,7 +55,6 @@ function Dashboard({ onLogoutHandler }) {
     const sortedData = restaurants.data
       .filter((restaurant) => restaurant.price)
       .sort((a, b) => {
-        // Mengurai dan mengonversi harga minimum
         const [minA, minB] = [a.price, b.price].map((price) => parseInt(price.replace('$', '').split(' - ')[0], 10));
         return minB - minA;
       });
@@ -69,6 +69,11 @@ function Dashboard({ onLogoutHandler }) {
       sortPriceCheap();
     } else if (filters.price === 'expensive') {
       sortPriceExpensive();
+    } else {
+      setRestaurants((prevItems) => ({
+        ...prevItems,
+        data: originalOrder,
+      }));
     }
   };
 
