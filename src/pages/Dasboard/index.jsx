@@ -1,3 +1,7 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/style-prop-object */
+/* eslint-disable quotes */
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable max-len */
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
@@ -5,8 +9,10 @@ import Filter from 'components/Filter';
 import Cards from 'components/Card';
 import { getAllRestaurant } from 'utils/api';
 import Loading from 'components/Loading';
+import Button from 'components/Button';
+import { AiOutlinePoweroff } from "react-icons/ai";
 
-function Dashboard() {
+function Dashboard({ onLogoutHandler }) {
   const [restaurants, setRestaurants] = useState({ error: false, data: [] });
   const [isLoading, setIsLoading] = useState(true);
   const [filters, setFilters] = useState({
@@ -86,19 +92,22 @@ function Dashboard() {
     });
   }
 
-  console.log(restaurants);
-
   return (
     <div>
-      <div>
-        <h1 className="text-4xl">
-          Restaurant
-        </h1>
-        <p className="w-1/2 text-gray-700 mt-2">
-          is simply dummy text of the printing and typesetting industry.Lorem
-          Ipsum has been the industry standard dummy text ever since the 1500s,
-          when an unknown.
-        </p>
+      <div className="flex items-center">
+        <div>
+          <h1 className="text-4xl">
+            Restaurant
+          </h1>
+          <p className="w-1/2 text-gray-700 mt-2">
+            is simply dummy text of the printing and typesetting industry.Lorem
+            Ipsum has been the industry standard dummy text ever since the 1500s,
+            when an unknown.
+          </p>
+        </div>
+        <div>
+          <Button onClick={onLogoutHandler} text={<AiOutlinePoweroff />} style="text-xl text-red-500 hover:text-red-700" />
+        </div>
       </div>
       <div>
         <Filter onFilterChange={handleFilterChange} />

@@ -9,7 +9,7 @@ function Button({
   style, text, detailButton, id, onClick,
 }) {
   return (
-    <button onClick={onClick} className={`${style} px-4 py-1`}>
+    <button type="submit" onClick={onClick} className={`${style} px-4 py-1`}>
       {detailButton ? (
         <Link to={`/${id}`}>{text}</Link>
       ) : (
