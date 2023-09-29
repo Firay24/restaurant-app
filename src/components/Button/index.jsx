@@ -6,10 +6,10 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 function Button({
-  style, text, detailButton, id,
+  style, text, detailButton, id, onClick,
 }) {
   return (
-    <button className={`${style} px-4 py-1`}>
+    <button onClick={onClick} className={`${style} px-4 py-1`}>
       {detailButton ? (
         <Link to={`/${id}`}>{text}</Link>
       ) : (

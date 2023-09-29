@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable comma-dangle */
 /* eslint-disable no-plusplus */
 /* eslint-disable radix */
@@ -60,10 +61,15 @@ function Cards({ restaurant }) {
                     <AiTwotoneCheckCircle className="text-red-500" />
                     <p>Closed</p>
                   </div>
-                ) : (
+                ) : restaurant.open_now_text === 'Open Now' ? (
                   <div className="flex items-center gap-x-1">
                     <AiTwotoneCheckCircle className="text-green-500" />
                     <p>Open Now</p>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-x-1">
+                    <AiTwotoneCheckCircle className="text-gray-300" />
+                    <p>Unknown</p>
                   </div>
                 )
               }

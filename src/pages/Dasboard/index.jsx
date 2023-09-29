@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
 import Filter from 'components/Filter';
 import Cards from 'components/Card';
@@ -7,6 +9,12 @@ import Loading from 'components/Loading';
 function Dashboard() {
   const [restaurants, setRestaurants] = useState({ error: false, data: [] });
   const [isLoading, setIsLoading] = useState(true);
+  const [filters, setFilters] = useState({
+    openNow: '',
+    price: '',
+    category: '',
+  });
+  let filteredRestaurants = '';
 
   const getRestaurantHandler = async () => {
     try {
@@ -18,9 +26,25 @@ function Dashboard() {
     }
   };
 
+  const handleFilterChange = (newFilter) => {
+    setFilters(newFilter);
+  };
+
   useEffect(() => {
     getRestaurantHandler();
   }, []);
+
+  if (!isLoading) {
+    filteredRestaurants = restaurants.data.filter((restaurant) => {
+      if (filters.openNow !== '' && restaurant.open_now_text !== filters.openNow) {
+        return false;
+      }
+      if (filters.category !== '' && restaurant.cuisine[0].name !== filters.category) {
+        return false;
+      }
+      return true;
+    });
+  }
 
   console.log(restaurants);
 
@@ -37,15 +61,16 @@ function Dashboard() {
         </p>
       </div>
       <div>
-        <Filter />
+        <Filter onFilterChange={handleFilterChange} />
       </div>
       <div className="flex flex-wrap mt-5 gap-y-8 gap-x-7 justify-items-start">
         {
           isLoading ? (
             <Loading />
+          ) : filteredRestaurants.length === 0 ? (
+            <p>Tidak ditemukan</p>
           ) : (
-            restaurants
-            && restaurants.data.map((restaurant) => {
+            filteredRestaurants.map((restaurant) => {
               if (restaurant.price) {
                 return <Cards key={restaurant.location_id} restaurant={restaurant} />;
               }
